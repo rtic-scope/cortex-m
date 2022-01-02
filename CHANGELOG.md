@@ -22,6 +22,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Updated `SCB.ICSR.VECTACTIVE`/`SCB::vect_active()` to be 9 bits instead of 8.
   Also fixes `VectActive::from` to take a `u16` and subtract `16` for
   `VectActive::Interrupt`s to match `SBC::vect_active()` (#373).
+- Differentiated the first `DWT` `Comparator` as the only one able to do cycle
+  count comparisons, and only on `armv7m`. Also renamed the field from `c` to
+  `comp0` and `comp[15]` for `armv7m` and `comp[2]` for `armv6m` (#377).
 
 ### Deprecated
 
