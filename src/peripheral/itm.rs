@@ -179,12 +179,20 @@ pub struct ITMSettings {
 pub enum ITMConfigurationError {
     /// Global timestamp generation is not supported on this target.
     /// Request [GlobalTimestampOptions::Disabled] instead.
+    ///
+    /// `ITM_TCR` register remains unchanged on this error.
     GTS,
     /// The requested timestamp clock source is not supported on this target.
+    ///
+    /// *NOTE*: `ITM_TCR.GTSFREQ` field has potentially been changed on
+    /// this error.
     TimestampClkSrc,
     /// The target does not implement the local timestamp prescaler.
     /// Request [LocalTimestampOptions::Disabled] or
     /// [LocalTimestampOptions::Disabled] instead.
+    ///
+    /// *NOTE*: `ITM_TCR.{GTSFREQ,SWOENA}` fields have potentially
+    /// changed on this error.
     TSPrescale,
 }
 
